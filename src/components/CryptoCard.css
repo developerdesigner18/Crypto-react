@@ -1,0 +1,25 @@
+.image {
+  width: "35px";
+}
+.card {
+  box-shadow: 0 1px 2px 0px;
+  width: 70%;
+}
+.card:hover {
+  box-shadow: 0 4px 8px 0;
+}
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.card-desc {
+  text-align: left;
+  font-weight: 600;
+  color: #201d1d;
+  padding: 25px;
+  font-family: "RajdhaniBold";
+}
