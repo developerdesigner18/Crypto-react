@@ -8,11 +8,43 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
+import Paper from "@mui/material/Paper";
+import { experimentalStyled as styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import CryptoCard from "../components/CryptoCard";
+import Filter from "../components/Filter";
+import CurrencyDetails from "./CurrencyDetails";
+import {useNavigate} from "react-router-dom"
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export default function CryptoCurrencies() {
   const [data, setData] = useState(null);
+
+  const navigate = useNavigate()
+
+  // let coins = data.coins;
+  
+  //  let allID = [];
+  //  if(data){
+  //   let coins = data.c
+  //    console.log("innnn", data.coins);
+  //    for(let i=0;i< data.coins.lenth; i++){
+  //     console.log(data.coins[i].uuid,"===");
+  //     allID.push(data.coins[i].uuid)
+  //    }
+  //  }
+
+  function handleClick(uuid){
+    
+    navigate(`/crypto/${uuid}`)
+  }
 
   useEffect(() => {
     fetch("https://coinranking1.p.rapidapi.com/coins?limit=100", {
@@ -26,18 +58,32 @@ export default function CryptoCurrencies() {
         setData(alldata.data);
       });
   }, []);
-  console.log(data);
+
+ 
 
   return (
-    data &&
-    data.coins.map((coindata) => (
-      <Box key={coindata.uuid} style={{ marginLeft: 250 }}>
-        <Container>
-          <div className="crypto-crads">
-            <CryptoCard data={coindata} />
-          </div>
-        </Container>
-      </Box>
-    ))
+    <Box style={{ marginLeft: 250 }} >
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {data &&
+          data.coins.map((coindata, index) => (
+            <Grid item xs={6} sm={6} md={3} key={index} onClick={()=>{handleClick(coindata.uuid)}}>
+              <Item>
+                <CryptoCard data={coindata} />
+              </Item>
+            </Grid>
+          ))}
+      </Grid>
+
+      {/* <Container>
+            <Row className="crypto-crads">
+            </div>
+          </Container> */}
+      <Filter />
+      
+    </Box>
   );
 }

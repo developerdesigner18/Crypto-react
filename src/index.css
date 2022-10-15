@@ -50,3 +50,20 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .MuiListItemText-root.css-tlelie-MuiListItemText-root:hover {
   color: #7575d5;
 }
+
+element.style {
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.css-1sir9cm-MuiPaper-root {
+  padding: 0;
+}
+.footer {
+  width: 100%;
+  background-color: #001529;
+  padding: 25px;
+  margin-top: 15px;
+}
+.link a {
+  color: #1890ff;
+  text-decoration: none;
+  cursor: pointer;
+}
