@@ -24,9 +24,6 @@ ChartJS.register(
     Legend
   );
 
-  
-
-
 export const Chart = ({params}) => {
    
     const [chart,setChart] = useState(null)
@@ -52,7 +49,6 @@ export const Chart = ({params}) => {
           })
     },[])
 
-   
     if(loading){
         return <h1>loading</h1>
     }
@@ -99,7 +95,6 @@ export const Chart = ({params}) => {
         ],
       };
 
-    
   return (
     <div>
         <Line options={options} data={data} />;
