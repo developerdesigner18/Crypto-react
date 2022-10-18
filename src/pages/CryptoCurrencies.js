@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import CryptoCard from "../components/CryptoCard";
 import Filter from "../components/Filter";
 import CurrencyDetails from "./CurrencyDetails";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,10 +27,10 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function CryptoCurrencies() {
   const [data, setData] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // let coins = data.coins;
-  
+
   //  let allID = [];
   //  if(data){
   //   let coins = data.c
@@ -41,9 +41,8 @@ export default function CryptoCurrencies() {
   //    }
   //  }
 
-  function handleClick(uuid){
-    
-    navigate(`/crypto/${uuid}`)
+  function handleClick(uuid) {
+    navigate(`/crypto/${uuid}`);
   }
 
   useEffect(() => {
@@ -59,10 +58,8 @@ export default function CryptoCurrencies() {
       });
   }, []);
 
- 
-
   return (
-    <Box style={{ marginLeft: 250 }} >
+    <Box style={{ marginLeft: 250 }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -70,7 +67,16 @@ export default function CryptoCurrencies() {
       >
         {data &&
           data.coins.map((coindata, index) => (
-            <Grid item xs={6} sm={6} md={3} key={index} onClick={()=>{handleClick(coindata.uuid)}}>
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              md={3}
+              key={index}
+              onClick={() => {
+                handleClick(coindata.uuid);
+              }}
+            >
               <Item>
                 <CryptoCard data={coindata} />
               </Item>
@@ -83,7 +89,6 @@ export default function CryptoCurrencies() {
             </div>
           </Container> */}
       <Filter />
-      
     </Box>
   );
 }
