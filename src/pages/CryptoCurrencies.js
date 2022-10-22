@@ -15,6 +15,7 @@ import CryptoCard from "../components/CryptoCard";
 import Filter from "../components/Filter";
 import CurrencyDetails from "./CurrencyDetails";
 import { useNavigate } from "react-router-dom";
+import { useFetchApi } from "../hooks/useFetchApi";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,38 +26,37 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function CryptoCurrencies() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
   const navigate = useNavigate();
-
-  // let coins = data.coins;
-
-  //  let allID = [];
-  //  if(data){
-  //   let coins = data.c
-  //    console.log("innnn", data.coins);
-  //    for(let i=0;i< data.coins.lenth; i++){
-  //     console.log(data.coins[i].uuid,"===");
-  //     allID.push(data.coins[i].uuid)
-  //    }
-  //  }
 
   function handleClick(uuid) {
     navigate(`/crypto/${uuid}`);
   }
 
-  useEffect(() => {
-    fetch("https://coinranking1.p.rapidapi.com/coins?limit=100", {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "ff7061690dmshfd3e9f86e03558ap172814jsne4ba9b39c8b0",
-      },
-    })
-      .then((res) => res.json())
-      .then((alldata) => {
-        setData(alldata.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://coinranking1.p.rapidapi.com/coins?limit=100", {
+  //     method: "GET",
+  //     headers: {
+  //       "X-RapidAPI-Key": "ff7061690dmshfd3e9f86e03558ap172814jsne4ba9b39c8b0",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((alldata) => {
+  //       setData(alldata.data);
+  //     });
+  // }, []);
+
+  const { data, loading, error } = useFetchApi(
+    `https://coinranking1.p.rapidapi.com/coins?limit=100`
+  );
+
+  if (loading) {
+    return <h1>loading</h1>;
+  }
+  if (error) {
+    return <h1>{error}</h1>;
+  }
 
   return (
     <Box style={{ marginLeft: 250 }}>
@@ -66,7 +66,7 @@ export default function CryptoCurrencies() {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {data &&
-          data.coins.map((coindata, index) => (
+          data.data.coins.map((coindata, index) => (
             <Grid
               item
               xs={6}

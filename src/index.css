@@ -70,3 +70,6 @@ element.style {
 .MuiContainer-root.MuiContainer-maxWidthLg.css-1oqqzyl-MuiContainer-root {
   padding: 0;
 }
+.css-1ud8x2t-MuiPaper-root-MuiCard-root:hover {
+  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
+}

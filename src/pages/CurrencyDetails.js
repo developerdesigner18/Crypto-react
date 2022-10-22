@@ -24,32 +24,22 @@ import {
   EmojiEvents,
 } from "@mui/icons-material";
 import Filter from "../components/Filter";
+import { useFetchApi } from "../hooks/useFetchApi";
 
 export default function CurrencyDetails() {
   const params = useParams();
-  const [Currency, setCurrency] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`https://coinranking1.p.rapidapi.com/coin/${params.uuid}`, {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "ff7061690dmshfd3e9f86e03558ap172814jsne4ba9b39c8b0",
-      },
-    })
-      .then((res) => res.json())
-      .then((allCurrency) => {
-        setCurrency(allCurrency.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-        console.log(error);
-      });
-  }, []);
+  const [day, setDay] = useState(null);
+
+  function handleChange(e) {
+    setDay(e.target.value);
+  }
+
+  const {
+    data: Currency,
+    loading,
+    error,
+  } = useFetchApi(`https://coinranking1.p.rapidapi.com/coin/${params.uuid}`);
 
   if (loading) {
     return <h1>loading</h1>;
@@ -70,12 +60,12 @@ export default function CurrencyDetails() {
                 margin: "40px 0px 10px 0px",
               }}
             >
-              {Currency.coin.name} ({Currency.coin.symbol}) Price
+              {Currency.data.coin.name} ({Currency.data.coin.symbol}) Price
             </Typography>
             <br></br>
             <Typography sx={{ color: "gray", marginBottom: "20px" }}>
-              {Currency.coin.name} live price in US Dollar (USD). View value
-              statistics, market cap and supply.
+              {Currency.data.coin.name} live price in US Dollar (USD). View
+              value statistics, market cap and supply.
             </Typography>
             <Divider />
           </Box>
@@ -87,7 +77,7 @@ export default function CurrencyDetails() {
                 id="demo-simple-select"
                 // value={age}
                 label="H"
-                // onChange={handleChange}
+                onChange={handleChange}
               >
                 <MenuItem value={3}>3h</MenuItem>
                 <MenuItem value={24}>24h</MenuItem>
@@ -109,16 +99,16 @@ export default function CurrencyDetails() {
             </Typography>
             <Typography sx={{ fontWeight: "700" }}>
               <span style={{ margin: "50px" }}>
-                Change: {Currency.coin.change}
+                Change: {Currency.data.coin.change}
               </span>
-              Current {Currency.coin.name} Price:$
-              {Math.sign(Currency.coin.price) *
-                (Math.abs(Currency.coin.price) / 1000).toFixed(1) +
+              Current {Currency.data.coin.name} Price:$
+              {Math.sign(Currency.data.coin.price) *
+                (Math.abs(Currency.data.coin.price) / 1000).toFixed(1) +
                 "k"}
             </Typography>
           </Box>
           <Box>
-            <Chart params={params.uuid} />
+            <Chart params={params.uuid} day={day} />
           </Box>
           <Box
             sx={{
@@ -149,8 +139,8 @@ export default function CurrencyDetails() {
                     <ListItemText primary="Price To USD" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
                       $
-                      {Math.sign(Currency.coin.price) *
-                        (Math.abs(Currency.coin.price) / 1000).toFixed(1) +
+                      {Math.sign(Currency.data.coin.price) *
+                        (Math.abs(Currency.data.coin.price) / 1000).toFixed(1) +
                         "k"}
                     </Typography>
                   </ListItem>
@@ -161,7 +151,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="Rank" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      {Currency.coin.rank}
+                      {Currency.data.coin.rank}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -171,7 +161,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="24h Volume" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      {Currency.coin.lowVolume}
+                      {Currency.data.coin.lowVolume}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -182,8 +172,8 @@ export default function CurrencyDetails() {
                     <ListItemText primary="Market Cap" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
                       $
-                      {Math.sign(Currency.coin.price) *
-                        (Math.abs(Currency.coin.price) / 1000).toFixed(1) +
+                      {Math.sign(Currency.data.coin.price) *
+                        (Math.abs(Currency.data.coin.price) / 1000).toFixed(1) +
                         "B"}
                     </Typography>
                   </ListItem>
@@ -194,7 +184,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="All-time-high(daily avg.)" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      ${Number(Currency.coin.allTimeHigh.price).toFixed(1)}
+                      ${Number(Currency.data.coin.allTimeHigh.price).toFixed(1)}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -224,8 +214,8 @@ export default function CurrencyDetails() {
                     <ListItemText primary="Price To USD" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
                       $
-                      {Math.sign(Currency.coin.price) *
-                        (Math.abs(Currency.coin.price) / 1000).toFixed(1) +
+                      {Math.sign(Currency.data.coin.price) *
+                        (Math.abs(Currency.data.coin.price) / 1000).toFixed(1) +
                         "k"}
                     </Typography>
                   </ListItem>
@@ -236,7 +226,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="Rank" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      {Currency.coin.rank}
+                      {Currency.data.coin.rank}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -246,7 +236,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="24h Volume" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      {Currency.coin.lowVolume}
+                      {Currency.data.coin.lowVolume}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -257,8 +247,8 @@ export default function CurrencyDetails() {
                     <ListItemText primary="Market Cap" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
                       $
-                      {Math.sign(Currency.coin.price) *
-                        (Math.abs(Currency.coin.price) / 1000).toFixed(1) +
+                      {Math.sign(Currency.data.coin.price) *
+                        (Math.abs(Currency.data.coin.price) / 1000).toFixed(1) +
                         "B"}
                     </Typography>
                   </ListItem>
@@ -269,7 +259,7 @@ export default function CurrencyDetails() {
                     </IconButton>
                     <ListItemText primary="All-time-high(daily avg.)" />
                     <Typography sx={{ marginLeft: "35px", fontWeight: "700" }}>
-                      ${Number(Currency.coin.allTimeHigh.price).toFixed(1)}
+                      ${Number(Currency.data.coin.allTimeHigh.price).toFixed(1)}
                     </Typography>
                   </ListItem>
                   <Divider />
@@ -295,7 +285,9 @@ export default function CurrencyDetails() {
                 What is Ethereum?
               </Typography>
               <div
-                dangerouslySetInnerHTML={{ __html: Currency.coin.description }}
+                dangerouslySetInnerHTML={{
+                  __html: Currency.data.coin.description,
+                }}
               ></div>
             </Grid>
             <Grid item xs={12} md={6} sx={{ width: "40%" }}>
@@ -306,7 +298,7 @@ export default function CurrencyDetails() {
                 Ethereum Links
               </Typography>
               <List>
-                {Currency.coin.links.map((link) => (
+                {Currency.data.coin.links.map((link) => (
                   <>
                     <ListItem key={link.name}>
                       <ListItemText primary={link.type} />
