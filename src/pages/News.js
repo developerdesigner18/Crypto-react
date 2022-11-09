@@ -57,7 +57,137 @@ export default function News() {
     {
       name: "Tether USD",
     },
+    {
+      name: "BnB",
+    },
+    {
+      name: "USDC",
+    },
+    {
+      name: "Binance USD",
+    },
+    {
+      name: "XRP",
+    },
+    {
+      name: "Cardano",
+    },
+    {
+      name: "Dogecoin",
+    },
+    {
+      name: "Polygon",
+    },
+    {
+      name: "Solana",
+    },
+    {
+      name: "Chainlink",
+    },
+    {
+      name: "Polkadot",
+    },
+    {
+      name: "Tron",
+    },
+    {
+      name: "Lido Staked Ether",
+    },
+    {
+      name: "Shiba Inu",
+    },
+    {
+      name: "Dai",
+    },
+    {
+      name: "Wrapped Ether",
+    },
+    {
+      name: "OKB",
+    },
+    {
+      name: "Uniswap",
+    },
+    {
+      name: "Wrapped BTC",
+    },
+    {
+      name: "Avalanche",
+    },
+    {
+      name: "PancakeSwap",
+    },
+    {
+      name: "Litecoin",
+    },
+    {
+      name: "Cosmos",
+    },
+    {
+      name: "BitDAO",
+    },
+    {
+      name: "Ethereum Classic ",
+    },
+    {
+      name: "Monero",
+    },
+    {
+      name: "Algorand",
+    },
+    {
+      name: "Cronos",
+    },
+    {
+      name: "Stellar",
+    },
+    {
+      name: "Bitcoin Cash",
+    },
+    {
+      name: "WEMIX TOKEN",
+    },
+    {
+      name: "VeChain",
+    },
+    {
+      name: "NEAR Protocol",
+    },
+    {
+      name: "Filecoin",
+    },
+    {
+      name: "Flow",
+    },
+    {
+      name: "Quant",
+    },
+    {
+      name: "Huobi Token",
+    },
+    {
+      name: "EnergySwap",
+    },
+    {
+      name: "Hedera",
+    },
+    {
+      name: "Frax",
+    },
+    {
+      name: "Decentraland",
+    },
+    {
+      name: "Terra Classic",
+    },
+    {
+      name: "Chiliz",
+    },
+    {
+      name: "Elrond",
+    },
   ];
+
   const defaultProps = {
     options: top100Films(),
     getOptionLabel: (option: FilmOptionType) => option.name,
@@ -74,7 +204,7 @@ export default function News() {
           onChange={(event: any, newValue: FilmOptionType | null) => {
             setValue(newValue);
           }}
-          sx={{ marginBottom: "20px", width: "25%" }}
+          sx={{ marginBottom: "25px", width: "25%", marginTop: "20px" }}
           renderInput={(params) => (
             <TextField {...params} label="Select a crypto" variant="standard" />
           )}
@@ -86,7 +216,7 @@ export default function News() {
         >
           {news.value.map((newsData, index) => (
             <Grid item key={index}>
-              <Item>
+              <Item style={{ padding: "0", cursor: "pointer" }}>
                 <Card sx={{ maxWidth: 345, minHeight: 345 }}>
                   {newsData?.image?.thumbnail?.contentUrl ? (
                     <CardMedia

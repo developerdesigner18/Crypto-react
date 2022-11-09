@@ -28,6 +28,60 @@
   color: #61dafb;
 }
 
+.ant-avatar-lg {
+  border-radius: 50%;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+}
+.ant-avatar-image {
+  background: transparent !important;
+}
+.ant-avatar {
+  font-feature-settings: "tnum", "tnum";
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.ant-avatar > img {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+.listItem:hover {
+  color: #7575d5 !important;
+}
+
+element.style {
+}
+
+.footer {
+  width: 100%;
+  background-color: #001529;
+  padding: 25px;
+  margin-top: 15px;
+}
+.link a {
+  color: #1890ff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.css-1ud8x2t-MuiPaper-root-MuiCard-root:hover {
+  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%) !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

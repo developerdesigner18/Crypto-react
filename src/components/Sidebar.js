@@ -35,11 +35,11 @@ export default function Sidebar() {
       onclick: () => navigate("/news"),
       icon: <NewspaperIcon />,
     },
-    {
-      text: "Exchanges",
-      onclick: () => navigate("/exchanges"),
-      icon: <AdbIcon />,
-    },
+    // {
+    //   text: "Exchanges",
+    //   onclick: () => navigate("/exchanges"),
+    //   icon: <AdbIcon />,
+    // },
   ];
 
   return (
@@ -89,8 +89,22 @@ export default function Sidebar() {
           {itemlist.map((item, index) => {
             const { text, icon, onclick } = item;
             return (
-              <ListItem button key={text} onClick={onclick}>
-                {icon && <ListItemIcon>{icon}</ListItemIcon>}
+              <ListItem
+                className="listItem"
+                button
+                key={text}
+                onClick={onclick}
+              >
+                {icon && (
+                  <ListItemIcon
+                    sx={{
+                      color: "#ddd2d2",
+                      minWidth: 30,
+                    }}
+                  >
+                    {icon}
+                  </ListItemIcon>
+                )}
                 <ListItemText primary={text}></ListItemText>
               </ListItem>
             );

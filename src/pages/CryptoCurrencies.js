@@ -59,7 +59,7 @@ export default function CryptoCurrencies() {
   }
 
   return (
-    <Box style={{ marginLeft: 250 }}>
+    <Box style={{ marginLeft: 250, padding: "20px 20px 0px 20px" }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -77,7 +77,12 @@ export default function CryptoCurrencies() {
                 handleClick(coindata.uuid);
               }}
             >
-              <Item>
+              <Item
+                style={{
+                  padding: 0,
+                  cursor: "pointer",
+                }}
+              >
                 <CryptoCard data={coindata} />
               </Item>
             </Grid>

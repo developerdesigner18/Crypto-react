@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Container } from "@mui/system";
 import {
   Typography,
@@ -14,6 +14,7 @@ import { experimentalStyled as styled } from "@mui/material/styles";
 import Filter from "../components/Filter";
 import moment from "moment";
 import { useFetchApi } from "../hooks/useFetchApi";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,6 +25,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  function handleClick(uuid) {
+    navigate(`/crypto/${uuid}`);
+  }
+
+  function mainpage() {
+    navigate("/cryptoCurrencies");
+  }
+
   const {
     data: states,
     loading: stateLoading,
@@ -49,8 +60,15 @@ export default function Home() {
       <Container>
         <Box>
           <Typography
-            variant="h4"
-            sx={{ textAlign: "left", fontWeight: "600" }}
+            variant="h2"
+            sx={{
+              textAlign: "left",
+              fontWeight: "600",
+              color: " rgba(0,0,0,.85)",
+              fontSize: "30px",
+              lineHeight: "1.35",
+              marginBottom: ".5em",
+            }}
           >
             Global Crypto States
           </Typography>
@@ -61,20 +79,23 @@ export default function Home() {
               display: "flex",
               justifyContent: "space-between",
               width: "50%",
+              cursor: "pointer",
             }}
           >
             <Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <Typography sx={{ color: "gray", fontSize: "15px" }}>
+                <Typography sx={{ color: "rgba(0,0,0,.45)", fontSize: "15px" }}>
                   Total Crypto Currencies
                 </Typography>
-                <Typography>{states?.data?.stats?.total}</Typography>
+                <Typography sx={{ fontSize: "24px" }}>
+                  {states?.data?.stats?.total}
+                </Typography>
               </Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <Typography sx={{ color: "gray", fontSize: "15px" }}>
+                <Typography sx={{ color: "rgba(0,0,0,.45)", fontSize: "15px" }}>
                   Total Market Cap
                 </Typography>
-                <Typography>
+                <Typography sx={{ fontSize: "24px" }}>
                   {Math.sign(states?.data?.stats?.totalMarketCap) *
                     (
                       Math.abs(states?.data?.stats?.totalMarketCap) / 1.0e9
@@ -84,10 +105,10 @@ export default function Home() {
               </Box>
               <Box>
                 {" "}
-                <Typography sx={{ color: "gray", fontSize: "15px" }}>
+                <Typography sx={{ color: "rgba(0,0,0,.45)", fontSize: "15px" }}>
                   Total Markets
                 </Typography>
-                <Typography>
+                <Typography sx={{ fontSize: "24px" }}>
                   {Math.sign(states?.data?.stats?.totalMarkets) *
                     (
                       Math.abs(states?.data?.stats?.totalMarkets) / 1.0e3
@@ -98,15 +119,17 @@ export default function Home() {
             </Box>
             <Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <Typography sx={{ color: "gray", fontSize: "15px" }}>
+                <Typography sx={{ color: "rgba(0,0,0,.45)", fontSize: "15px" }}>
                   Total Exchange
                 </Typography>
-                <Typography>{states?.data?.stats?.totalExchanges}</Typography>
+                <Typography sx={{ fontSize: "24px" }}>
+                  {states?.data?.stats?.totalExchanges}
+                </Typography>
               </Box>
-              <Typography sx={{ color: "gray", fontSize: "15px" }}>
+              <Typography sx={{ color: "rgba(0,0,0,.45)", fontSize: "15px" }}>
                 Total 24h Volume
               </Typography>
-              <Typography>
+              <Typography sx={{ fontSize: "24px" }}>
                 {Math.sign(states?.data?.stats?.total24hVolume) *
                   (
                     Math.abs(states?.data?.stats?.total24hVolume) / 1.0e9
@@ -117,16 +140,35 @@ export default function Home() {
           </Box>
         </Box>
         <Box>
-          <Typography
-            variant="h4"
+          <Box
             sx={{
-              textAlign: "left",
-              margin: "30px 0px 30px 0px",
-              fontWeight: "600",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            Top 10 Cryptocurrencies in the world
-          </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                textAlign: "left",
+                margin: "30px 0px 30px 0px",
+                fontWeight: "600",
+                color: " rgba(0,0,0,.85)",
+                fontSize: "30px",
+                lineHeight: "1.35",
+                marginBottom: ".5em",
+              }}
+            >
+              Top 10 Cryptocurrencies in the world
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{ color: "#1890ff", fontWeight: "600" }}
+              onClick={mainpage}
+            >
+              Show More
+            </Typography>
+          </Box>
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}
@@ -134,8 +176,22 @@ export default function Home() {
           >
             {states &&
               states.data.coins.map((coindata, index) => (
-                <Grid item xs={6} sm={6} md={3} key={index}>
-                  <Item>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={3}
+                  key={index}
+                  onClick={() => {
+                    handleClick(coindata.uuid);
+                  }}
+                >
+                  <Item
+                    style={{
+                      padding: 0,
+                      cursor: "pointer",
+                    }}
+                  >
                     <CryptoCard data={coindata} />
                   </Item>
                 </Grid>
@@ -150,6 +206,10 @@ export default function Home() {
               textAlign: "left",
               margin: "30px 0px 30px 0px",
               fontWeight: "600",
+              color: " rgba(0,0,0,.85)",
+              fontSize: "30px",
+              lineHeight: "1.35",
+              marginBottom: ".5em",
             }}
           >
             Latest Crypto News
@@ -164,7 +224,12 @@ export default function Home() {
           >
             {news?.value?.map((newsData, index) => (
               <Grid item key={index}>
-                <Item>
+                <Item
+                  style={{
+                    padding: 0,
+                    cursor: "pointer",
+                  }}
+                >
                   <Card sx={{ maxWidth: 345, minHeight: 250 }}>
                     {newsData?.image?.thumbnail?.contentUrl ? (
                       <CardMedia

@@ -9,8 +9,6 @@ import {
   ListItem,
   Grid,
   IconButton,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
@@ -93,7 +91,14 @@ export default function CurrencyDetails() {
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               variant="h4"
-              sx={{ color: "#0071bd", fontWeight: "700" }}
+              sx={{
+                color: "#0071bd",
+                fontWeight: "700",
+                fontSize: "30px",
+                fontWeight: "600",
+                lineHeight: "1.35",
+                marginBottom: ".5em",
+              }}
             >
               Bitcoin Price Chart
             </Typography>
