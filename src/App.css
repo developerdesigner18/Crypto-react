@@ -63,8 +63,9 @@
 .listItem:hover {
   color: #7575d5 !important;
 }
-
-element.style {
+.boldtext span {
+  font-weight: 700 !important;
+  font-size: 14px !important;
 }
 
 .footer {
@@ -72,13 +73,13 @@ element.style {
   background-color: #001529;
   padding: 25px;
   margin-top: 15px;
+  box-sizing: border-box;
 }
 .link a {
   color: #1890ff;
   text-decoration: none;
   cursor: pointer;
 }
-
 .css-1ud8x2t-MuiPaper-root-MuiCard-root:hover {
   box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%) !important;
 }
@@ -88,5 +89,54 @@ element.style {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.grid_box {
+  width: 25% !important;
+}
+
+@media (max-width: 1024px) {
+  .css-1wkj1ql {
+    width: 70% !important;
+  }
+  .grid_box {
+    width: 33% !important;
+  }
+}
+@media (min-width: 768px) {
+  .mobilemenu {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .css-1wkj1ql {
+    width: 100% !important;
+  }
+  .grid_box {
+    width: 50% !important;
+  }
+  .latest_grid_box div {
+    max-width: 100% !important;
+  }
+  .latest_grid_box {
+    width: 100% !important;
+  }
+}
+@media (max-width: 576px) {
+  .css-1wkj1ql {
+    width: 100% !important;
+  }
+  .grid_box {
+    width: 100% !important;
+  }
+  .cryptoMobile {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .cryptoMobile {
+    margin-left: 0 !important;
   }
 }

@@ -62,7 +62,6 @@ export const Chart = ({ params, day }) => {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
       },
     },
   };

@@ -16,6 +16,7 @@ import Filter from "../components/Filter";
 import CurrencyDetails from "./CurrencyDetails";
 import { useNavigate } from "react-router-dom";
 import { useFetchApi } from "../hooks/useFetchApi";
+import Mobilemenu from "../components/Mobilemenu";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -59,41 +60,47 @@ export default function CryptoCurrencies() {
   }
 
   return (
-    <Box style={{ marginLeft: 250, padding: "20px 20px 0px 20px" }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+    <>
+      <Box
+        className="cryptoMobile"
+        style={{ marginLeft: 240, padding: "20px 20px 0px 20px" }}
       >
-        {data &&
-          data.data.coins.map((coindata, index) => (
-            <Grid
-              item
-              xs={6}
-              sm={6}
-              md={3}
-              key={index}
-              onClick={() => {
-                handleClick(coindata.uuid);
-              }}
-            >
-              <Item
-                style={{
-                  padding: 0,
-                  cursor: "pointer",
+        <Mobilemenu />
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {data &&
+            data.data.coins.map((coindata, index) => (
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                md={3}
+                key={index}
+                onClick={() => {
+                  handleClick(coindata.uuid);
                 }}
               >
-                <CryptoCard data={coindata} />
-              </Item>
-            </Grid>
-          ))}
-      </Grid>
+                <Item
+                  style={{
+                    padding: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  <CryptoCard data={coindata} />
+                </Item>
+              </Grid>
+            ))}
+        </Grid>
 
-      {/* <Container>
+        {/* <Container>
             <Row className="crypto-crads">
             </div>
           </Container> */}
+      </Box>
       <Filter />
-    </Box>
+    </>
   );
 }

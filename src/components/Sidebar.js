@@ -43,7 +43,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: { xs: "none", sm: "flex" } }}>
       {/* <AppBar
         position="fixed"
         sx={{
@@ -77,6 +77,7 @@ export default function Sidebar() {
             width: "100%",
             alignItems: "center",
             padding: "20px",
+            boxSizing: "border-box",
           }}
         >
           <span className="ant-avatar ant-avatar-lg ant-avatar-circle ant-avatar-image">
@@ -105,7 +106,11 @@ export default function Sidebar() {
                     {icon}
                   </ListItemIcon>
                 )}
-                <ListItemText primary={text}></ListItemText>
+                <ListItemText
+                  className="boldtext"
+                  primary={text}
+                  sx={{ color: "#b3a9a9" }}
+                ></ListItemText>
               </ListItem>
             );
           })}
