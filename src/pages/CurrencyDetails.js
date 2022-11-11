@@ -73,8 +73,8 @@ export default function CurrencyDetails() {
               </Typography>
               <Divider />
             </Box>
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl sx={{ width: "20%", margin: "20px 900px 20px 0px" }}>
+            <Box sx={{ minWidth: 120, textAlign: "left" }}>
+              <FormControl sx={{ width: "20%", margin: "20px 0px 20px 0px" }}>
                 <InputLabel id="demo-simple-select-label">H</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -94,7 +94,10 @@ export default function CurrencyDetails() {
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box
+              className="crypto_chart"
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
               <Typography
                 variant="h4"
                 sx={{
@@ -122,6 +125,7 @@ export default function CurrencyDetails() {
               <Chart params={params.uuid} day={day} />
             </Box>
             <Box
+              className="crypto_details"
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -340,6 +344,7 @@ export default function CurrencyDetails() {
               </Box>
             </Box>
             <Box
+              className="crypto_details"
               sx={{
                 display: "flex",
                 justifyContent: "space-between",

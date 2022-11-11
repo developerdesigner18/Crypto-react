@@ -74,10 +74,8 @@ export default function CryptoCurrencies() {
           {data &&
             data.data.coins.map((coindata, index) => (
               <Grid
+                className="grid_box"
                 item
-                xs={6}
-                sm={6}
-                md={3}
                 key={index}
                 onClick={() => {
                   handleClick(coindata.uuid);

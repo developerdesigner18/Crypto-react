@@ -200,7 +200,10 @@ export default function News() {
   return (
     news && (
       <>
-        <Box style={{ marginLeft: 250 }} className="cryptoMobile">
+        <Box
+          style={{ marginLeft: 250, padding: "20px 20px 0px 20px" }}
+          className="cryptoMobile"
+        >
           <Mobilemenu />
           <Autocomplete
             {...defaultProps}
@@ -213,7 +216,6 @@ export default function News() {
             sx={{
               marginBottom: "25px",
               width: "25%",
-              marginTop: "20px",
               paddingLeft: "20px",
             }}
             renderInput={(params) => (
@@ -231,7 +233,7 @@ export default function News() {
           >
             {news.value.map((newsData, index) => {
               return (
-                <Grid item key={index}>
+                <Grid className="latest_grid_box" item key={index}>
                   <a
                     style={{ textDecoration: "none" }}
                     href={newsData.url}
@@ -239,36 +241,39 @@ export default function News() {
                   >
                     <Item style={{ padding: "0", cursor: "pointer" }}>
                       <Card
+                        className="card-news"
                         sx={{
                           maxWidth: 345,
                           minHeight: 345,
                         }}
                       >
-                        {newsData?.image?.thumbnail?.contentUrl ? (
-                          <CardMedia
-                            component="img"
-                            sx={{
-                              height: "100px",
-                              width: "150px",
-                              margin: "20px 0px 0px 100px",
-                              borderRadius: "20px",
-                            }}
-                            image={newsData?.image?.thumbnail?.contentUrl}
-                            alt="green iguana"
-                          />
-                        ) : (
-                          <Card height="140" />
-                        )}
-                        <CardContent>
+                        <Box className="image-Title">
+                          {newsData?.image?.thumbnail?.contentUrl ? (
+                            <CardMedia
+                              component="img"
+                              sx={{
+                                height: "100px",
+                                width: "150px",
+                                margin: "20px 0px 0px 100px",
+                                borderRadius: "20px",
+                              }}
+                              image={newsData?.image?.thumbnail?.contentUrl}
+                              alt="green iguana"
+                            />
+                          ) : (
+                            <Card height="140" />
+                          )}
                           <Typography
                             sx={{ textAlign: "left" }}
                             gutterBottom
-                            variant="h5"
+                            variant="h4"
                             component="div"
+                            className="news-title"
                           >
                             {newsData.name}
                           </Typography>
-
+                        </Box>
+                        <CardContent>
                           <Typography
                             sx={{ textAlign: "left" }}
                             variant="body2"
@@ -276,7 +281,7 @@ export default function News() {
                           >
                             {(newsData?.description)
                               .split(" ")
-                              .slice(0, 10)
+                              .slice(0, 30)
                               .join(" ") + "..."}
                           </Typography>
 

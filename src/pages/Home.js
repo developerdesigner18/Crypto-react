@@ -64,7 +64,7 @@ export default function Home() {
     <>
       <Box style={{ marginLeft: 250 }} className="cryptoMobile">
         <Mobilemenu />
-        <Container>
+        <Container className="home-container">
           <Box>
             <Typography
               variant="h2"
@@ -157,6 +157,7 @@ export default function Home() {
           </Box>
           <Box>
             <Box
+              className="heading_box"
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -215,6 +216,7 @@ export default function Home() {
 
           <Box>
             <Box
+              className="heading_box"
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -264,32 +266,38 @@ export default function Home() {
                         cursor: "pointer",
                       }}
                     >
-                      <Card sx={{ maxWidth: 325, minHeight: 250 }}>
-                        {newsData?.image?.thumbnail?.contentUrl ? (
-                          <CardMedia
-                            component="img"
-                            sx={{
-                              height: "100px",
-                              width: "150px",
-                              margin: "20px 0px 0px 100px",
-                              borderRadius: "20px",
-                            }}
-                            image={newsData?.image?.thumbnail?.contentUrl}
-                            alt="green iguana"
-                          />
-                        ) : (
-                          <Card height="140" />
-                        )}
-                        <CardContent>
+                      <Card
+                        className="card-news"
+                        sx={{ maxWidth: 325, minHeight: 250 }}
+                      >
+                        <Box className="image-Title">
+                          {newsData?.image?.thumbnail?.contentUrl ? (
+                            <CardMedia
+                              component="img"
+                              sx={{
+                                height: "100px",
+                                width: "150px",
+                                margin: "20px 0px 0px 100px",
+                                borderRadius: "20px",
+                              }}
+                              image={newsData?.image?.thumbnail?.contentUrl}
+                              alt="green iguana"
+                            />
+                          ) : (
+                            <Card height="140" />
+                          )}
                           <Typography
                             sx={{ textAlign: "left" }}
                             gutterBottom
                             variant="h5"
                             component="div"
+                            className="news-title"
                           >
                             {newsData.name}
                           </Typography>
+                        </Box>
 
+                        <CardContent>
                           <Typography
                             sx={{ textAlign: "left" }}
                             variant="body2"

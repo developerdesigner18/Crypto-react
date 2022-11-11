@@ -43,7 +43,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+    <Box sx={{ display: { xs: "none", md: "flex", sm: "flex" } }}>
       {/* <AppBar
         position="fixed"
         sx={{

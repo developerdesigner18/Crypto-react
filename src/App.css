@@ -27,7 +27,9 @@
 .App-link {
   color: #61dafb;
 }
-
+.home-container {
+  max-width: 1600px !important;
+}
 .ant-avatar-lg {
   border-radius: 50%;
   height: 40px;
@@ -67,6 +69,32 @@
   font-weight: 700 !important;
   font-size: 14px !important;
 }
+.latest_grid_box {
+  width: 33.33% !important;
+}
+.image-Title {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  margin: 20px 0px;
+}
+.image-Title img {
+  width: 30%;
+  margin: auto;
+}
+.news-title {
+  width: 70%;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+.card-news {
+  max-width: 92% !important;
+  margin: auto;
+  border: none;
+  box-shadow: none !important;
+}
 
 .footer {
   width: 100%;
@@ -80,9 +108,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.css-1ud8x2t-MuiPaper-root-MuiCard-root:hover {
-  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%) !important;
-}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -95,8 +121,21 @@
 .grid_box {
   width: 25% !important;
 }
+.grid_box > div,
+.grid_box > div > div {
+  box-shadow: none !important;
+}
+.latest_grid_box a,
+.latest_grid_box a > div,
+.latest_grid_box a > div > div {
+  height: 100%;
+}
 
 @media (max-width: 1024px) {
+  .footer {
+    margin-left: 240px;
+    width: auto;
+  }
   .css-1wkj1ql {
     width: 70% !important;
   }
@@ -110,6 +149,17 @@
   }
 }
 @media (max-width: 768px) {
+  .crypto_chart,
+  .crypto_details {
+    flex-direction: column;
+  }
+  .crypto_details > div {
+    width: 100%;
+  }
+  .footer {
+    margin-left: 240px;
+    width: auto;
+  }
   .css-1wkj1ql {
     width: 100% !important;
   }
@@ -120,7 +170,14 @@
     max-width: 100% !important;
   }
   .latest_grid_box {
-    width: 100% !important;
+    width: 94% !important;
+    margin: auto !important;
+  }
+}
+@media (max-width: 600px) {
+  .footer {
+    margin-left: 0;
+    width: 100%;
   }
 }
 @media (max-width: 576px) {
@@ -129,9 +186,13 @@
   }
   .grid_box {
     width: 100% !important;
+    margin-top: 20px !important;
   }
   .cryptoMobile {
     margin-left: 0 !important;
+  }
+  .heading_box {
+    flex-direction: column;
   }
 }
 
